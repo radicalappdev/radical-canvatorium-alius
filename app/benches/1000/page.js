@@ -1,8 +1,8 @@
 "use client";
 
 import * as THREE from "three";
-import { OrbitControls, Box } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Box } from "@react-three/drei";
 
 export default function Bench() {
   return (
