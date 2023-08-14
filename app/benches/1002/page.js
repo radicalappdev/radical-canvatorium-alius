@@ -3,14 +3,14 @@
 import * as THREE from "three";
 import React, { useState, useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Box, OrbitControls, Text3D, Center, Resize, Environment } from "@react-three/drei";
+import { Box, OrbitControls, Text3D, Center, Resize, Environment, Bounds } from "@react-three/drei";
 
 export default function CountdownClock() {
   return (
     <>
       <Canvas camera={{ position: [0, 0, 6] }}>
         <color attach="background" args={["#ffffff"]} />
-        <OrbitControls />
+        <OrbitControls makeDefault={true} />
 
         <Scene />
         <Environment background resolution={24}>
@@ -45,71 +45,75 @@ function Scene({ margin = 0.5 }) {
   const { width, height } = useThree((state) => state.viewport);
   return (
     <>
-      <Center top left position={[width / 4 - margin, -height / 4 - margin, 0]}>
-        <Text3D
-          position={[0, 2.6, 0]}
-          curveSegments={32}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          height={0.16}
-          lineHeight={0.5}
-          letterSpacing={-0.06}
-          size={0.8}
-          font="/Inter_Bold.json"
-        >
-          {`${timeRemaining.days} days`}
-          <meshNormalMaterial />
-        </Text3D>
+      {/* <Resize> */}
+      <Bounds fit clip observe damping={6} margin={1.2}>
+        <Center top left position={[width / 4 - margin, -height / 4 - margin, 0]}>
+          <Text3D
+            position={[0, 2.6, 0]}
+            curveSegments={32}
+            bevelEnabled
+            bevelSize={0.04}
+            bevelThickness={0.1}
+            height={0.16}
+            lineHeight={0.5}
+            letterSpacing={-0.06}
+            size={0.8}
+            font="/Inter_Bold.json"
+          >
+            {`${timeRemaining.days} days`}
+            <meshNormalMaterial />
+          </Text3D>
 
-        <Text3D
-          position={[0, 1.2, 0]}
-          curveSegments={32}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          height={0.16}
-          lineHeight={0.5}
-          letterSpacing={-0.06}
-          size={0.8}
-          font="/Inter_Bold.json"
-        >
-          {`${timeRemaining.hours} hours`}
-          <meshNormalMaterial />
-        </Text3D>
+          <Text3D
+            position={[0, 1.2, 0]}
+            curveSegments={32}
+            bevelEnabled
+            bevelSize={0.04}
+            bevelThickness={0.1}
+            height={0.16}
+            lineHeight={0.5}
+            letterSpacing={-0.06}
+            size={0.8}
+            font="/Inter_Bold.json"
+          >
+            {`${timeRemaining.hours} hours`}
+            <meshNormalMaterial />
+          </Text3D>
 
-        <Text3D
-          position={[0, 0, 0]}
-          curveSegments={32}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          height={0.16}
-          lineHeight={0.5}
-          letterSpacing={-0.06}
-          size={0.8}
-          font="/Inter_Bold.json"
-        >
-          {`${timeRemaining.minutes} minutes`}
-          <meshNormalMaterial />
-        </Text3D>
+          <Text3D
+            position={[0, 0, 0]}
+            curveSegments={32}
+            bevelEnabled
+            bevelSize={0.04}
+            bevelThickness={0.1}
+            height={0.16}
+            lineHeight={0.5}
+            letterSpacing={-0.06}
+            size={0.8}
+            font="/Inter_Bold.json"
+          >
+            {`${timeRemaining.minutes} minutes`}
+            <meshNormalMaterial />
+          </Text3D>
 
-        <Text3D
-          position={[0, -1.2, 0]}
-          curveSegments={32}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          height={0.16}
-          lineHeight={0.5}
-          letterSpacing={-0.06}
-          size={0.8}
-          font="/Inter_Bold.json"
-        >
-          {`${timeRemaining.seconds} seconds`}
-          <meshNormalMaterial />
-        </Text3D>
-      </Center>
+          <Text3D
+            position={[0, -1.2, 0]}
+            curveSegments={32}
+            bevelEnabled
+            bevelSize={0.04}
+            bevelThickness={0.1}
+            height={0.16}
+            lineHeight={0.5}
+            letterSpacing={-0.06}
+            size={0.8}
+            font="/Inter_Bold.json"
+          >
+            {`${timeRemaining.seconds} seconds`}
+            <meshNormalMaterial />
+          </Text3D>
+        </Center>
+      </Bounds>
+      {/* </Resize> */}
     </>
   );
 }
