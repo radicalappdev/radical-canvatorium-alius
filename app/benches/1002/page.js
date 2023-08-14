@@ -1,26 +1,20 @@
 "use client";
 
-import * as THREE from "three";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { PresentationControls, Text3D, Center, Environment, Bounds } from "@react-three/drei";
+import { PresentationControls, Text3D, Center, Sky, Bounds } from "@react-three/drei";
 
 export default function CountdownClock() {
   return (
     <>
       <Canvas camera={{ position: [0, 0, 6] }}>
-        <color attach="background" args={["#ffffff"]} />
+        <ambientLight intensity={1} />
+        <color attach="background" args={["#0e0e0e"]} />
+        {/* <Sky azimuth={0.1} turbidity={10} rayleigh={0.5} inclination={0.6} distance={1000} /> */}
 
         <PresentationControls makeDefault={true} snap global zoom={0.8} rotation={[0, 0, 0]} polar={[0, Math.PI / 4]} azimuth={[-Math.PI / 4, Math.PI / 4]}>
           <Scene />
         </PresentationControls>
-
-        <Environment background resolution={24}>
-          <mesh scale={500}>
-            <sphereGeometry args={[1, 64, 64]} />
-            <meshNormalMaterial side={THREE.BackSide} />
-          </mesh>
-        </Environment>
       </Canvas>
     </>
   );
@@ -50,7 +44,22 @@ function Scene({ margin = 0.5 }) {
       <Bounds fit clip observe damping={6} margin={1.2}>
         <Center top left position={[width / 4 - margin, -height / 4 - margin, 0]}>
           <Text3D
-            position={[0, 2.6, 0]}
+            position={[0, 4.2, 0]}
+            curveSegments={32}
+            bevelEnabled
+            bevelSize={0.04}
+            bevelThickness={0.1}
+            height={0.16}
+            lineHeight={0.5}
+            letterSpacing={-0.06}
+            size={0.6}
+            font="/Inter_Bold.json"
+          >
+            {`Meta Connect 2023`}
+            <meshNormalMaterial />
+          </Text3D>
+          <Text3D
+            position={[0, 2.4, 0]}
             curveSegments={32}
             bevelEnabled
             bevelSize={0.04}
