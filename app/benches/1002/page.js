@@ -1,23 +1,31 @@
 "use client";
 
+import * as THREE from "three";
 import React, { useState, useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { OrbitControls, Text3D, Center } from "@react-three/drei";
+import { Box, OrbitControls, Text3D, Center, Resize, Environment } from "@react-three/drei";
 
 export default function CountdownClock() {
   return (
     <>
       <Canvas camera={{ position: [0, 0, 6] }}>
-        <color attach="background" args={["#b1b7fe"]} />
+        <color attach="background" args={["#ffffff"]} />
         <OrbitControls />
+
         <Scene />
+        <Environment background resolution={24}>
+          <mesh scale={500}>
+            <sphereGeometry args={[1, 64, 64]} />
+            <meshNormalMaterial side={THREE.BackSide} />
+          </mesh>
+        </Environment>
       </Canvas>
     </>
   );
 }
 
 function Scene({ margin = 0.5 }) {
-  const targetDate = new Date("2023-12-31T00:00:00"); // Set your target date here
+  const targetDate = new Date("2023-09-27T00:00:00"); // Set your target date here
   const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(targetDate));
 
   useEffect(() => {
@@ -37,8 +45,7 @@ function Scene({ margin = 0.5 }) {
   const { width, height } = useThree((state) => state.viewport);
   return (
     <>
-      {/* Render countdown elements */}
-      <Center top left position={[width / 2 - margin, -height / 4 - margin, 0]}>
+      <Center top left position={[width / 4 - margin, -height / 4 - margin, 0]}>
         <Text3D
           position={[0, 2.6, 0]}
           curveSegments={32}
@@ -48,7 +55,7 @@ function Scene({ margin = 0.5 }) {
           height={0.16}
           lineHeight={0.5}
           letterSpacing={-0.06}
-          size={1.2}
+          size={0.8}
           font="/Inter_Bold.json"
         >
           {`${timeRemaining.days} days`}
@@ -64,7 +71,7 @@ function Scene({ margin = 0.5 }) {
           height={0.16}
           lineHeight={0.5}
           letterSpacing={-0.06}
-          size={1}
+          size={0.8}
           font="/Inter_Bold.json"
         >
           {`${timeRemaining.hours} hours`}
@@ -88,7 +95,7 @@ function Scene({ margin = 0.5 }) {
         </Text3D>
 
         <Text3D
-          position={[0, -1, 0]}
+          position={[0, -1.2, 0]}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
@@ -96,7 +103,7 @@ function Scene({ margin = 0.5 }) {
           height={0.16}
           lineHeight={0.5}
           letterSpacing={-0.06}
-          size={0.6}
+          size={0.8}
           font="/Inter_Bold.json"
         >
           {`${timeRemaining.seconds} seconds`}
