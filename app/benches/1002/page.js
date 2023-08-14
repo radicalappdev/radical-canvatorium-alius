@@ -1,10 +1,22 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text3D } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, Text3D, Center } from "@react-three/drei";
 
 export default function CountdownClock() {
+  return (
+    <>
+      <Canvas camera={{ position: [0, 3, 5] }}>
+        <color attach="background" args={["#b1b7fe"]} />
+        <OrbitControls />
+        <Scene />
+      </Canvas>
+    </>
+  );
+}
+
+function Scene({ margin = 0.5 }) {
   const targetDate = new Date("2023-12-31T00:00:00"); // Set your target date here
   const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(targetDate));
 
@@ -22,32 +34,30 @@ export default function CountdownClock() {
       clearInterval(interval);
     };
   }, [targetDate]);
-
+  const { width, height } = useThree((state) => state.viewport);
   return (
     <>
-      <Canvas camera={{ position: [0, 3, 5] }}>
-        <color attach="background" args={["#b1b7fe"]} />
-        <OrbitControls />
-        <gridHelper args={[10, 10, 0x1e293b, 0x94a3b8]} />
-
-        {/* Render countdown elements */}
+      {/* Render countdown elements */}
+      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
         <Text3D
-          position={[0, 2, 0]}
+          position={[0, 3, 0]}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
           bevelThickness={0.1}
-          height={0.5}
+          height={0.16}
           lineHeight={0.5}
           letterSpacing={-0.06}
-          size={1}
+          size={1.2}
           font="/Inter_Bold.json"
         >
           {`${timeRemaining.days} days`}
           <meshNormalMaterial />
         </Text3D>
+      </Center>
+      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
         <Text3D
-          position={[0, 1, 0]}
+          position={[0, 1.6, 0]}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
@@ -61,6 +71,8 @@ export default function CountdownClock() {
           {`${timeRemaining.hours} hours`}
           <meshNormalMaterial />
         </Text3D>
+      </Center>
+      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
         <Text3D
           position={[0, 0, 0]}
           curveSegments={32}
@@ -70,12 +82,14 @@ export default function CountdownClock() {
           height={0.5}
           lineHeight={0.5}
           letterSpacing={-0.06}
-          size={1}
+          size={0.8}
           font="/Inter_Bold.json"
         >
           {`${timeRemaining.minutes} minutes`}
           <meshNormalMaterial />
         </Text3D>
+      </Center>
+      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
         <Text3D
           position={[0, -1, 0]}
           curveSegments={32}
@@ -85,13 +99,13 @@ export default function CountdownClock() {
           height={0.5}
           lineHeight={0.5}
           letterSpacing={-0.06}
-          size={1}
+          size={0.6}
           font="/Inter_Bold.json"
         >
           {`${timeRemaining.seconds} seconds`}
           <meshNormalMaterial />
         </Text3D>
-      </Canvas>
+      </Center>
     </>
   );
 }
