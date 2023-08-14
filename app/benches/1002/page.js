@@ -3,16 +3,18 @@
 import * as THREE from "three";
 import React, { useState, useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Box, OrbitControls, Text3D, Center, Resize, Environment, Bounds } from "@react-three/drei";
+import { PresentationControls, Text3D, Center, Environment, Bounds } from "@react-three/drei";
 
 export default function CountdownClock() {
   return (
     <>
       <Canvas camera={{ position: [0, 0, 6] }}>
         <color attach="background" args={["#ffffff"]} />
-        <OrbitControls makeDefault={true} />
 
-        <Scene />
+        <PresentationControls makeDefault={true} snap global zoom={0.8} rotation={[0, 0, 0]} polar={[0, Math.PI / 4]} azimuth={[-Math.PI / 4, Math.PI / 4]}>
+          <Scene />
+        </PresentationControls>
+
         <Environment background resolution={24}>
           <mesh scale={500}>
             <sphereGeometry args={[1, 64, 64]} />
@@ -45,7 +47,6 @@ function Scene({ margin = 0.5 }) {
   const { width, height } = useThree((state) => state.viewport);
   return (
     <>
-      {/* <Resize> */}
       <Bounds fit clip observe damping={6} margin={1.2}>
         <Center top left position={[width / 4 - margin, -height / 4 - margin, 0]}>
           <Text3D
@@ -113,7 +114,6 @@ function Scene({ margin = 0.5 }) {
           </Text3D>
         </Center>
       </Bounds>
-      {/* </Resize> */}
     </>
   );
 }
