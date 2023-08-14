@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text } from "@react-three/drei";
+import { OrbitControls, Text3D } from "@react-three/drei";
 
 export default function CountdownClock() {
   const targetDate = new Date("2023-12-31T00:00:00"); // Set your target date here
@@ -26,23 +26,71 @@ export default function CountdownClock() {
   return (
     <>
       <Canvas camera={{ position: [0, 3, 5] }}>
-        <color attach="background" args={["#f1f5f9"]} />
+        <color attach="background" args={["#b1b7fe"]} />
         <OrbitControls />
         <gridHelper args={[10, 10, 0x1e293b, 0x94a3b8]} />
 
         {/* Render countdown elements */}
-        <Text position={[0, 2, 0]} fontSize={0.5} color="white" textAlign="center" anchorX="center" anchorY="middle">
-          {timeRemaining.days} days
-        </Text>
-        <Text position={[0, 1, 0]} fontSize={0.5} color="white" textAlign="center" anchorX="center" anchorY="middle">
-          {timeRemaining.hours} hours
-        </Text>
-        <Text position={[0, 0, 0]} fontSize={0.5} color="white" textAlign="center" anchorX="center" anchorY="middle">
-          {timeRemaining.minutes} minutes
-        </Text>
-        <Text position={[0, -1, 0]} fontSize={0.5} color="white" textAlign="center" anchorX="center" anchorY="middle">
-          {timeRemaining.seconds} seconds
-        </Text>
+        <Text3D
+          position={[0, 2, 0]}
+          curveSegments={32}
+          bevelEnabled
+          bevelSize={0.04}
+          bevelThickness={0.1}
+          height={0.5}
+          lineHeight={0.5}
+          letterSpacing={-0.06}
+          size={1}
+          font="/Inter_Bold.json"
+        >
+          {`${timeRemaining.days} days`}
+          <meshNormalMaterial />
+        </Text3D>
+        <Text3D
+          position={[0, 1, 0]}
+          curveSegments={32}
+          bevelEnabled
+          bevelSize={0.04}
+          bevelThickness={0.1}
+          height={0.5}
+          lineHeight={0.5}
+          letterSpacing={-0.06}
+          size={1}
+          font="/Inter_Bold.json"
+        >
+          {`${timeRemaining.hours} hours`}
+          <meshNormalMaterial />
+        </Text3D>
+        <Text3D
+          position={[0, 0, 0]}
+          curveSegments={32}
+          bevelEnabled
+          bevelSize={0.04}
+          bevelThickness={0.1}
+          height={0.5}
+          lineHeight={0.5}
+          letterSpacing={-0.06}
+          size={1}
+          font="/Inter_Bold.json"
+        >
+          {`${timeRemaining.minutes} minutes`}
+          <meshNormalMaterial />
+        </Text3D>
+        <Text3D
+          position={[0, -1, 0]}
+          curveSegments={32}
+          bevelEnabled
+          bevelSize={0.04}
+          bevelThickness={0.1}
+          height={0.5}
+          lineHeight={0.5}
+          letterSpacing={-0.06}
+          size={1}
+          font="/Inter_Bold.json"
+        >
+          {`${timeRemaining.seconds} seconds`}
+          <meshNormalMaterial />
+        </Text3D>
       </Canvas>
     </>
   );
