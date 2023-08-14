@@ -7,7 +7,7 @@ import { OrbitControls, Text3D, Center } from "@react-three/drei";
 export default function CountdownClock() {
   return (
     <>
-      <Canvas camera={{ position: [0, 3, 5] }}>
+      <Canvas camera={{ position: [0, 0, 6] }}>
         <color attach="background" args={["#b1b7fe"]} />
         <OrbitControls />
         <Scene />
@@ -38,9 +38,9 @@ function Scene({ margin = 0.5 }) {
   return (
     <>
       {/* Render countdown elements */}
-      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
+      <Center top left position={[width / 2 - margin, -height / 4 - margin, 0]}>
         <Text3D
-          position={[0, 3, 0]}
+          position={[0, 2.6, 0]}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
@@ -54,15 +54,14 @@ function Scene({ margin = 0.5 }) {
           {`${timeRemaining.days} days`}
           <meshNormalMaterial />
         </Text3D>
-      </Center>
-      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
+
         <Text3D
-          position={[0, 1.6, 0]}
+          position={[0, 1.2, 0]}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
           bevelThickness={0.1}
-          height={0.5}
+          height={0.16}
           lineHeight={0.5}
           letterSpacing={-0.06}
           size={1}
@@ -71,15 +70,14 @@ function Scene({ margin = 0.5 }) {
           {`${timeRemaining.hours} hours`}
           <meshNormalMaterial />
         </Text3D>
-      </Center>
-      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
+
         <Text3D
           position={[0, 0, 0]}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
           bevelThickness={0.1}
-          height={0.5}
+          height={0.16}
           lineHeight={0.5}
           letterSpacing={-0.06}
           size={0.8}
@@ -88,15 +86,14 @@ function Scene({ margin = 0.5 }) {
           {`${timeRemaining.minutes} minutes`}
           <meshNormalMaterial />
         </Text3D>
-      </Center>
-      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
+
         <Text3D
           position={[0, -1, 0]}
           curveSegments={32}
           bevelEnabled
           bevelSize={0.04}
           bevelThickness={0.1}
-          height={0.5}
+          height={0.16}
           lineHeight={0.5}
           letterSpacing={-0.06}
           size={0.6}
