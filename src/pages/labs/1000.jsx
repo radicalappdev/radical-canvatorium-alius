@@ -1,6 +1,5 @@
 "use client";
 
-import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Text } from "@react-three/drei";
 import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
@@ -19,9 +18,8 @@ export default function Lab1000() {
           <OrbitControls />
           <ambientLight intensity={0.5} />
           <directionalLight intensity={1} />
-          <primitive object={new THREE.GridHelper(20, 20)} />
 
-          {/* create a plane with a transparent material */}
+          <gridHelper args={[20, 20, labColors.slate8, labColors.slate4]} />
 
           <mesh position={[0, 1.4, 0]}>
             <planeGeometry attach="geometry" args={[4, 2]} />
