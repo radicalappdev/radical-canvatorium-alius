@@ -1,0 +1,11 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+canvas {
+  padding: 0;
+  margin: 0;
+}
+.sceneContainer {
+  height: 100vh;
+}
