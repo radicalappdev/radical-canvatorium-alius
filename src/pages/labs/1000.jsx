@@ -19,7 +19,9 @@ export default function Lab1000() {
           <ambientLight intensity={0.5} />
           <directionalLight intensity={1} />
 
-          <gridHelper args={[20, 20, labColors.slate8, labColors.slate4]} />
+          {/* <gridHelper args={[20, 20, labColors.slate8, labColors.slate4]} /> */}
+
+          <polarGridHelper args={[20, 20, 20, 20, labColors.slate8, labColors.slate4]} />
 
           <mesh position={[0, 1.4, 0]}>
             <planeGeometry attach="geometry" args={[4, 2]} />
