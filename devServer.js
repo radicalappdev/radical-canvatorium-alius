@@ -24,7 +24,8 @@ const localIPv4 = Object.values(networkInterfaces)
   .flatMap((interfaceArray) => interfaceArray)
   .find((interface) => interface.family === "IPv4" && !interface.internal).address;
 
-const customPort = 4000; // Choose a port number of your preference
+// Choose a port number of your preference
+const customPort = 4000;
 
 app.prepare().then(() => {
   createServer(options, (req, res) => {

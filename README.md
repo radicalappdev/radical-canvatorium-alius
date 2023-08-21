@@ -1,8 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Radical Canvatorium Alius
 
-## Getting Started
+This is the codebase for the React-Three-Fiber version of the Radical Canvatorium.
 
-First, run the development server:
+- Labs are used to explore concepts for Spatial Computing, VR, AR, WebXR, etc. Labs will nearly always be intended to be viewed in VR or AR
+- Benches are used to explore simple 3D concepts that may be used in the labs. Benches will not have VR or AR support.
+
+Labs and benches are numbered by the 3D Framework they use.
+
+| Lab Numbers | 3D Framework      |
+| ----------- | ----------------- |
+| 0000 – 0999 | Babylon JS        |
+| 1000 – 1999 | Three JS          |
+| 2000 – 2999 | React-Three-Fiber |
+| 3000 – 3999 | A-Frame           |
+| 4000 – 4999 | PlayCanvas        |
+
+- Learn more about Canvatorium [here](https://vrhermit.com/canvatorium/)
+- The main Canvatorium repo is [here](https://github.com/radicalappdev/radical-canvatorium)
+
+## Local development
+
+I created this project with Vite, but I reconfigured it to use some self-signed certs for local development.
+
+1. Install mkcert
+
+2. Use mkcert to create the certs at the project root
+
+```
+mkcert -key-file key.pem -cert-file cert.pem "localhost"
+```
+
+3. Create a folder named certs and move the key.pem and cert.pem files into it
+
+4. Run the development server:
 
 ```bash
 npm run dev
@@ -12,27 +42,4 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You should see the IP and port that the server is running on listed in the console.
