@@ -24,12 +24,14 @@ const localIPv4 = Object.values(networkInterfaces)
   .flatMap((interfaceArray) => interfaceArray)
   .find((interface) => interface.family === "IPv4" && !interface.internal).address;
 
+const customPort = 4000; // Choose a port number of your preference
+
 app.prepare().then(() => {
   createServer(options, (req, res) => {
     const parsedUrl = parse(req.url, true);
     handle(req, res, parsedUrl);
-  }).listen(3000, (err) => {
+  }).listen(customPort, (err) => {
     if (err) throw err;
-    console.log(`> Ready on https://${localIPv4}:3000`);
+    console.log(`> Ready on https://${localIPv4}:${customPort}`);
   });
 });
