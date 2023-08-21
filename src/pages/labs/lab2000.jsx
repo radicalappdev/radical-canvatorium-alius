@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { Text } from "@react-three/drei";
 import { labColors } from "@/utils/labTheme";
-import { LabCamera } from "@/components/LabCamera";
+import { LabCamera, LabRoom } from "@/components/LabComponents";
 
 export default function Lab1000() {
   return (
@@ -13,14 +13,9 @@ export default function Lab1000() {
       <Canvas>
         <XR>
           <LabCamera />
-          <color attach="background" args={[labColors.slate1]} />
+          <LabRoom />
           <Controllers />
           <Hands />
-
-          <ambientLight intensity={0.5} />
-          <directionalLight intensity={1} />
-
-          <gridHelper args={[20, 20, labColors.slate8, labColors.slate4]} />
 
           <mesh position={[0, 1.4, 0]} scale={[0.5, 0.5, 0.5]}>
             <planeGeometry attach="geometry" args={[4, 2]} />
