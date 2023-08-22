@@ -12,11 +12,24 @@ export default function Lab1000() {
       <VRButton />
       <Canvas>
         <XR>
-          <LabCamera position={[0, 1.4, 4]} />
-          <LabXRPlayer position={[0, 0, 4]} />
+          <LabCamera position={[0, 1.4, 2]} />
+          <LabXRPlayer position={[0, 0, 2]} />
           <LabRoom />
 
-          <mesh position={[0, 1.4, 0]} scale={[0.5, 0.5, 0.5]}>
+          <mesh position={[-3, 0.25, 3]} scale={[0.5, 0.5, 0.5]}>
+            <boxGeometry attach="geometry" args={[1, 1, 1]} />
+            <meshBasicMaterial attach="material" color={labColors.blue} />
+          </mesh>
+          <mesh position={[2, 0.25, -2]} scale={[0.5, 0.5, 0.5]}>
+            <boxGeometry attach="geometry" args={[1, 1, 1]} />
+            <meshBasicMaterial attach="material" color={labColors.green} />
+          </mesh>
+          <mesh position={[0, 0.25, 0]} scale={[0.5, 0.5, 0.5]}>
+            <boxGeometry attach="geometry" args={[1, 1, 1]} />
+            <meshBasicMaterial attach="material" color={labColors.purple} />
+          </mesh>
+
+          {/* <mesh position={[0, 1.4, 0]} scale={[0.5, 0.5, 0.5]}>
             <planeGeometry attach="geometry" args={[4, 2]} />
             <meshBasicMaterial attach="material" color={labColors.slate1} transparent opacity={0.8} />
             <Text font="/fonts/NotoSans-Bold.ttf" color={labColors.slate8} anchorX="center" anchorY="middle" scale={[0.3, 0.3, 0.3]} position={[0, 0.2, 0.01]}>
@@ -25,7 +38,7 @@ export default function Lab1000() {
             <Text font="/fonts/NotoSans-Bold.ttf" color={labColors.slate8} anchorX="center" anchorY="middle" scale={[0.15, 0.15, 0.15]} position={[0, -0.2, 0.01]}>
               React + Three.js Edition
             </Text>
-          </mesh>
+          </mesh> */}
         </XR>
       </Canvas>
     </>

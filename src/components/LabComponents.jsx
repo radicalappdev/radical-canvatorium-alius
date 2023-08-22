@@ -1,3 +1,5 @@
+import React, { useRef } from "react";
+
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { labColors } from "@/utils/labTheme";
 import { Hands, Controllers, TeleportationPlane, useXR } from "@react-three/xr";
@@ -34,7 +36,7 @@ export function LabXRPlayer(props) {
     <>
       <Hands />
       <Controllers />
-      <TeleportationPlane />
+      <TeleportationPlane leftHand rightHand />
     </>
   );
 }
