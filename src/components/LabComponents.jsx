@@ -39,11 +39,12 @@ export function LabXRPlayer(props) {
 
   // THIS DOESN'T SEEM TO DO ANYTHING
   const teleport = useTeleportation();
-  useEffect(() => {
-    if (xr.getReferenceSpace()) {
-      teleport(...position);
-    }
-  }, [xr]);
+  console.log(teleport);
+  // useEffect(() => {
+  //   if (xr.getReferenceSpace()) {
+  //     teleport(...position);
+  //   }
+  // }, [xr]);
 
   return (
     <>
