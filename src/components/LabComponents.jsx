@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-
+import React, { useEffect } from "react";
+import { useThree } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { labColors } from "@/utils/labTheme";
 import { Hands, Controllers, TeleportationPlane, useXR, useTeleportation } from "@react-three/xr";
@@ -30,13 +30,20 @@ export function LabRoom() {
 export function LabXRPlayer(props) {
   const { position } = props;
 
+  const xr = useThree((it) => it.gl.xr);
+
   // THIS IS THE ONLY THING THAT HAS LET ME POSITION THE PLAYER
-  // const player = useXR((state) => state.player);
-  // player.position.set(...position);
+  const player = useXR((state) => state.player);
+  console.log(player);
+  player.position.set(...position);
 
   // THIS DOESN'T SEEM TO DO ANYTHING
   const teleport = useTeleportation();
-  teleport(...position);
+  useEffect(() => {
+    if (xr.getReferenceSpace()) {
+      teleport(...position);
+    }
+  }, [xr]);
 
   return (
     <>
