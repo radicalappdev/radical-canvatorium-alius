@@ -30,8 +30,6 @@ export function LabRoom() {
 export function LabXRPlayer(props) {
   const { position } = props;
 
-  const xr = useThree((it) => it.gl.xr);
-
   // THIS IS THE ONLY THING THAT HAS LET ME POSITION THE PLAYER
   const player = useXR((state) => state.player);
   console.log(player);
@@ -39,12 +37,7 @@ export function LabXRPlayer(props) {
 
   // THIS DOESN'T SEEM TO DO ANYTHING
   const teleport = useTeleportation();
-  console.log(teleport);
-  // useEffect(() => {
-  //   if (xr.getReferenceSpace()) {
-  //     teleport(...position);
-  //   }
-  // }, [xr]);
+  teleport(...position);
 
   return (
     <>
